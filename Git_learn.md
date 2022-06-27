@@ -131,3 +131,17 @@ git和其他版本控制器不同在于又暂存区这个概念。
 **切换分支和撤销很像`git checkout <branch>`，撤销多个-- `git checkout -- <file>`,所以引入switch更科学。**
 创建分支 `git switch -c dev`
 切换到已有分支 `git switch master`
+
+## 分支冲突
+当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
+
+解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
+
+用`git log --graph`命令可以看到分支合并图。
+
+==合并操作（ merge ）只对对当前所在分支产生影响；无论是否存在冲突，合并之后，feature分支都不会发生变化。==
+
+## 分支管理策略
+合并分支的时候git会使用**fast forward**模式，合并完成之后会删除分支信息。
+使用`--no-ff`模式 `git merge --no-ff -m "merge with no-ff" dev` 合并并创建一个新的commit。
+>合并分支时，加上`--no-ff`参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而`fast forward`合并就看不出来曾经做过合并。
