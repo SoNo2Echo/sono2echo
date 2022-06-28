@@ -145,3 +145,20 @@ git和其他版本控制器不同在于又暂存区这个概念。
 合并分支的时候git会使用**fast forward**模式，合并完成之后会删除分支信息。
 使用`--no-ff`模式 `git merge --no-ff -m "merge with no-ff" dev` 合并并创建一个新的commit。
 >合并分支时，加上`--no-ff`参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而`fast forward`合并就看不出来曾经做过合并。
+
+## Bug分支
+在开发过程中master分支一般是很稳定的，会在dev分支做修改然后提交到master上，但是master也会有bug出现，但是我们现在要先修复master上的bug，且先暂时放下dev分支上的工作（dev分支上的工作还没有commit），**此时你就要开创一个bug分支（named issue-101）**
+
+1.需要暂存dev分支的状态 使用命令 `git stash` (工作现场“储存”，之后可以恢复)。
+2.确定哪个分支出了bug需要改就从那个分支创建==临时分支== `git checkout main` => `git checkout -b issue-101`。
+3.然后再issue-101分支上修完bug add并commit。
+4.切换回main分支，合并分支`git merge --no-ff -m "merged bug fix 101" issue-101`。至此已经修完了main分支上的bug，接下来就是回dev分支完成剩下的工作。
+5.`git switch dev`但是会发现工作区是clean的，用`git stash list`查看状态，会发现stash存在了某个地方。
+>两种方式恢复现场
+>1.一是用`git stash apply`恢复，但是恢复后，`stash`内容并不删除，你需要用`git stash drop`来删除。
+>2.另一种方式是用`git stash pop`，恢复的同时把`stash`内容也删了。
+
+6.由于dev是由有bug的main分支创建的所以，当前dev是含有bug的，我们修复这个bug需要把fix bug 101这个commit的HEAD复制到dev中而不是把整个main分支merge过来。`git cherry-pick <commit>`
+
+## 删除没有merge的分支
+`git branch -D branch` 用于删除没有合并的分支。（强行删除）
