@@ -1,5 +1,5 @@
-Git is a distributed version control system.
-Git is free software distributed under the GPL.
-Git has a mutable index called stage.
-Git tracks changes of files.
-这是一个学习git的仓库，主要是自己记得一些笔记方便查看，一个初级的教程
++ 是计算机视觉cv爱好者，也是开发cv爱好者（🤪）
++ 说唱爱好者 shout out to KeyNG Yang & Eminem
++ Github搬运工
++ Life is a fxxking struggle
++ 这是一个学习的仓库，主要是自己记得一些笔记方便查看
