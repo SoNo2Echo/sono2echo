@@ -1,3 +1,4 @@
++ Golang/Python, 入职后可能转Java
 + 是计算机视觉cv爱好者，也是开发cv爱好者（🤪）
 + 说唱爱好者 shout out to KeyNG Yang & Eminem
 + Github搬运工
